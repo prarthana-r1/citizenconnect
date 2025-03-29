@@ -121,6 +121,3 @@ For any inquiries or support, feel free to reach out:
 - **GitHub Issues**: [CitizenConnect Repository](https://github.com/yourusername/CitizenConnect/issues)
 - **Twitter**: [@CitizenConnect](https://twitter.com/CitizenConnect)
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
