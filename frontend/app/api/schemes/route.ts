@@ -139,10 +139,14 @@ const mockSchemes = [
   },
 ]
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const { id } = params;
 
-  // Find the scheme by ID
+
+export async function GET(
+  request: Request,
+  context: { params: { id: string } }
+) {
+  const { id } = context.params;
+
   const scheme = mockSchemes.find((s) => s.id === id);
 
   if (!scheme) {
@@ -151,3 +155,4 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
   return NextResponse.json(scheme);
 }
+
