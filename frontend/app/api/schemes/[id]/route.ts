@@ -139,20 +139,21 @@ const mockSchemes = [
   },
 ]
 
+export async function GET(request: Request, { params }: { params: { id: string } }) {
+  const id = params.id
 
-
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params; // Extract the ID from params
-
-  // Find the scheme by ID
-  const scheme = mockSchemes.find((s) => s.id === id);
+  // Find the scheme with the matching ID
+  const scheme = mockSchemes.find((scheme) => scheme.id === id)
 
   if (!scheme) {
-    return NextResponse.json({ error: "Scheme not found" }, { status: 404 });
+    return NextResponse.json({ error: "Scheme not found" }, { status: 404 })
   }
 
-  return NextResponse.json(scheme);
+  // In a real application, you would query your database here
+  // For example with Prisma:
+  // const scheme = await prisma.scheme.findUnique({
+  //   where: { id }
+  // })
+
+  return NextResponse.json(scheme)
 }
