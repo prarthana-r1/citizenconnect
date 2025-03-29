@@ -139,20 +139,18 @@ const mockSchemes = [
   },
 ]
 
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const category = searchParams.get("category")
 
+  // Filter schemes by category if provided
+  const filteredSchemes = category ? mockSchemes.filter((scheme) => scheme.category === category) : mockSchemes
 
-export async function GET(
-  request: Request,
-  context: { params: { id: string } }
-) {
-  const { id } = context.params;
+  // In a real application, you would query your database here
+  // For example with Prisma:
+  // const schemes = await prisma.scheme.findMany({
+  //   where: category ? { category } : undefined
+  // })
 
-  const scheme = mockSchemes.find((s) => s.id === id);
-
-  if (!scheme) {
-    return NextResponse.json({ error: "Scheme not found" }, { status: 404 });
-  }
-
-  return NextResponse.json(scheme);
+  return NextResponse.json(filteredSchemes)
 }
-
